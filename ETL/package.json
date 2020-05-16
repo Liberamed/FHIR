@@ -1,0 +1,34 @@
+{
+  "name": "etl",
+  "version": "1.0.0",
+  "description": "FHIR ETL Pipeline",
+  "main": "MigratePt.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liberamed/FHIR.git"
+  },
+  "keywords": [
+    "FHIR",
+    "ETL"
+  ],
+  "author": "exister99",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liberamed/FHIR/issues"
+  },
+  "homepage": "https://github.com/Liberamed/FHIR#readme",
+  "dependencies": {
+    "capitalize": "^2.0.3",
+    "dateformat": "^3.0.3",
+    "dotenv": "^8.2.0",
+    "enum": "^3.0.4",
+    "fhir-validator": "^0.5.1",
+    "mariadb": "^2.1.5"
+  }
+}

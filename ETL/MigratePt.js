@@ -6,8 +6,8 @@ const schema = fs.readFileSync('test/fhir.schema.json');
 const fhir = require('fhir-validator');
 const pool = mariadb.createPool({
 	host: process.env.DB_HOST,
-			user: process.env.DB_USER, 
-			password: process.env.DB_PWD, 
+			user: process.env.DB_USER,
+			password: process.env.DB_PWD,
 			database:process.env.DB_DB,
 	                acquireTimeout: 1000000,
                 	connectionLimit: 33 });
@@ -24,11 +24,11 @@ function migrate_pt(item) {
     console.log("The resource was valid per fhir-validator.");
     pool.getConnection()
     .then(conn => {
-      conn.query("REPLACE INTO Patients_JSON (AthenaID, attr) VALUES (?, ?)", 
+      conn.query("REPLACE INTO Patients_JSON (AthenaID, attr) VALUES (?, ?)",
         [item.AthenaID, pt.to_JSON()])
       .then(res => {
         console.log("The AID is " + item.AthenaID);
-	console.log("Inserted patient number: " + ++pt_ct);
+	      console.log("Inserted patient number: " + ++pt_ct);
         conn.release();
       })
       .catch(err => {
@@ -46,7 +46,7 @@ function migrate_pt(item) {
 
 pool.getConnection()
 .then(conn => {
-  conn.query("SELECT * FROM patients WHERE AthenaID < 25000")
+  conn.query("SELECT * FROM patients")
   .then(rows => {
     rows.forEach(migrate_pt);
     conn.release();
