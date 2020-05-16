@@ -15,8 +15,6 @@ const pool = mariadb.createPool({
 var pt_ct = 0;
 
 function migrate_pt(item) {
-  //var pool = require('./mmw')
-  
   item.ID_assigner = 'Athena';
   let pt = new Patient(item);
   var result = fhir.validate(pt.to_JSON());
@@ -29,7 +27,7 @@ function migrate_pt(item) {
       conn.query("REPLACE INTO Patients_JSON (AthenaID, attr) VALUES (?, ?)", 
         [item.AthenaID, pt.to_JSON()])
       .then(res => {
-	console.log("the response was " + res);
+        console.log("The AID is " + item.AthenaID);
 	console.log("Inserted patient number: " + ++pt_ct);
         conn.release();
       })
@@ -44,15 +42,11 @@ function migrate_pt(item) {
       process.exit();
     });
   }
-
-  //console.log("Also" + " the pt Gender is " + pt.gender);
-  //console.log("Further, the pt name is " + pt.name);
-  //pt.write_json();
 }
 
 pool.getConnection()
 .then(conn => {
-  conn.query("SELECT * FROM patients")
+  conn.query("SELECT * FROM patients WHERE AthenaID < 25000")
   .then(rows => {
     rows.forEach(migrate_pt);
     conn.release();
