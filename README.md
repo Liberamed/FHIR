@@ -1,2 +1,2 @@
 # FHIR
-A RESTful API implementation of Fast Healthcare Interoperability Resources
+A RESTful API implementing Fast Healthcare Interoperability Resources
