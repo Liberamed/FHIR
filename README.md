@@ -1,10 +1,2 @@
 # FHIR
-Code supporting FHIR based medical data interoperability
-
-Clone out and install dependencies
-
-  npm install
-  
-Then
-
-  node Migrate.pt
+A RESTful API implementation of Fast Healthcare Interoperability Resources
